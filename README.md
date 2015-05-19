@@ -13,11 +13,12 @@ dependencies {
 ```java
 ViewScrollHelper viewScrollHelper = new ViewScrollHelper(recyclerView, toolbar, this);
 ```
-```
 
 Developed by
 -------
-Héctor de Isidro - hrules6872 [![Twitter](http://img.shields.io/badge/contact-@h_rules-blue.svg?style=flat)](http://twitter.com/h_rules) 
+Héctor de Isidro - hrules6872 [![Twitter](http://img.shields.io/badge/contact-@h_rules-blue.svg?style=flat)](http://twitter.com/h_rules)
+
+Based on [mzgreen's](https://github.com/mzgreen/HideOnScrollExample) work. Thank you!
 
 License
 -------
