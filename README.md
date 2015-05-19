@@ -1,6 +1,6 @@
 ViewScrollHelper
 =====
-Show/hide views when scrolling a list (RecyclerView).
+Show/hide views (e.g. a toolbar) when the user scrolls up/down a RecyclerView.
 
 ##Importing to your project
 Add this dependency to your build.gradle file:
@@ -11,8 +11,9 @@ dependencies {
 ```
 ##Usage
 ```java
-ViewScrollHelper viewScrollHelper = new ViewScrollHelper(recyclerView, toolbar, this);
+new ViewScrollHelper(recyclerView, toolbar);
 ```
+More detailed usage example can be found in example application.
 
 Developed by
 -------
