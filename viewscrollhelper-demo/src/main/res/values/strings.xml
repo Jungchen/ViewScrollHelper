@@ -1,0 +1,9 @@
+<resources>
+  <string name="appName">ViewScrollHelper-demo</string>
+  <string name="recyclerView">RecyclerView</string>
+  <string name="recyclerViewTabs">Recycler+Tabs</string>
+  <string name="tab1">TAB 1</string>
+  <string name="tab2">TAB 2</string>
+  <string name="title_recyclerView">ViewScrollHelper-demo-RecyclerView</string>
+  <string name="title_recyclerViewTabs">ViewScrollHelper-demo-Recycler+Tabs</string>
+</resources>
