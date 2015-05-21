@@ -2,6 +2,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:minHeight="?attr/listPreferredItemHeightSmall"
+    android:id="@+id/tabs"
     >
   <FrameLayout
       android:layout_width="0dp"

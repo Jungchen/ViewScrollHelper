@@ -35,7 +35,7 @@ public class RecyclerTabsActivity extends AppCompatActivity implements OnViewScr
         LinearLayout layoutTop = (LinearLayout) findViewById(R.id.layoutTop);
 
         final ViewScrollHelper viewScrollHelper = new ViewScrollHelper(recyclerView, layoutTop, this);
-        viewScrollHelper.setViewToHide(toolbar);
+        viewScrollHelper.setViewSticky(findViewById(R.id.tabs));
     }
 
     private List<String> createList() {
