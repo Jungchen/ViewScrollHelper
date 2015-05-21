@@ -18,6 +18,7 @@ public class ViewScrollHelper {
 
     private View view;
     private int viewHeight;
+    private int viewHeightOld;
     private int viewOffset;
     private boolean viewVisible;
     private int viewScrolledDistance;
@@ -54,6 +55,7 @@ public class ViewScrollHelper {
         this.view = view;
         view.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
         viewHeight = this.view.getMeasuredHeight();
+        viewHeightOld = viewHeight;
         viewOffset = 0;
         viewVisible = true;
         viewScrolledDistance = 0;
@@ -166,18 +168,35 @@ public class ViewScrollHelper {
     public void setViewToHide(View view) {
         view.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
         int customViewHeight = view.getMeasuredHeight();
-        if (customViewHeight > viewHeight) {
-            throw new IllegalArgumentException("View height must be greater than main View");
+        if (customViewHeight > viewHeightOld) {
+            throw new IllegalArgumentException("View height must be less than parent View height");
         }
         viewHeight = customViewHeight;
     }
 
     public void setViewToHideHeight(int height) {
-        if (height > viewHeight) {
-            throw new IllegalArgumentException("View height must be greater than main View");
+        if (height > viewHeightOld) {
+            throw new IllegalArgumentException("View height must be less than parent View height");
         }
         viewHeight = height;
     }
+
+    public void setViewStickyHeight(int height) {
+        if (height > viewHeightOld) {
+            throw new IllegalArgumentException("View height must be less than parent View height");
+        }
+        viewHeight = viewHeightOld - height;
+    }
+
+    public void setViewSticky(View view) {
+        view.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+        int customViewHeight = view.getMeasuredHeight();
+        if (customViewHeight > viewHeightOld) {
+            throw new IllegalArgumentException("View height must be less than parent View height");
+        }
+        viewHeight = viewHeightOld - customViewHeight;
+    }
+
 
     private void notifyOnHide() {
         if (listener != null) {
