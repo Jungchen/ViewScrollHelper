@@ -2,8 +2,20 @@
   <string name="appName">ViewScrollHelper-demo</string>
   <string name="recyclerView">RecyclerView</string>
   <string name="recyclerViewTabs">Recycler+Tabs</string>
+  <string name="scrollView">ScrollView</string>
   <string name="tab1">TAB 1</string>
   <string name="tab2">TAB 2</string>
   <string name="title_recyclerView">ViewScrollHelper-demo-RecyclerView</string>
   <string name="title_recyclerViewTabs">ViewScrollHelper-demo-Recycler+Tabs</string>
+  <string name="title_scrollView">ViewScrollHelper-demo-ScrollView</string>
+  <string name="loremIpsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas elementum, libero scelerisque tincidunt imperdiet, justo arcu pellentesque nisi, eu rhoncus velit metus et dolor. Vivamus pretium gravida elit interdum malesuada. Proin auctor vehicula urna, sed maximus neque. Sed imperdiet dolor id nulla porttitor, ac pulvinar nulla varius. Vivamus ut dui fringilla, aliquam ante ut, rhoncus lacus. Mauris id feugiat magna, at gravida dui. Aenean maximus tellus ac consequat cursus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce a quam nec risus tempor accumsan.
+
+Nullam nec purus eu nisi sollicitudin cursus. Aliquam congue mi a tempus mattis. Pellentesque gravida facilisis diam eget fermentum. Nam leo felis, ornare in lorem ac, feugiat sagittis risus. Cras velit ligula, posuere vel nibh et, dictum vestibulum massa. Maecenas auctor velit felis, sit amet euismod ex ultrices quis. Praesent id tristique purus, eu eleifend nunc. Vestibulum ut efficitur diam, in vehicula purus. Phasellus sed massa vel nibh gravida elementum eget bibendum enim. Nam aliquet bibendum lorem nec facilisis. Ut finibus odio id tellus faucibus venenatis. Proin commodo, orci at sodales mollis, dui nibh vestibulum arcu, ac elementum magna augue eu leo. Cras sed tortor augue.
+
+Suspendisse ornare tincidunt nisi sed accumsan. Curabitur et mauris at diam euismod eleifend. Aenean pretium erat et mauris vestibulum, vel suscipit orci maximus. Mauris vitae purus viverra, semper mauris ac, sollicitudin nisl. Maecenas euismod massa vitae turpis facilisis molestie. Curabitur tristique egestas purus ut mattis. Phasellus non blandit turpis, quis accumsan justo.
+
+Pellentesque malesuada ligula sit amet massa sagittis, quis dapibus eros pretium. Vivamus nec nisi luctus odio lacinia pretium. Nunc vel turpis at orci tincidunt placerat non aliquet ex. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent luctus ex a augue dignissim consequat. Phasellus rhoncus nisl quam, nec rhoncus nibh egestas sit amet. Pellentesque vulputate velit et sem dignissim volutpat. Nunc sed nunc ultrices, lacinia libero nec, posuere mi. Integer tincidunt non velit id consectetur. Fusce aliquet elementum velit eu vestibulum. Mauris ac odio viverra, vehicula lectus sit amet, lacinia nisl. Curabitur sapien tellus, condimentum venenatis arcu sit amet, maximus volutpat sem. Nulla dictum egestas convallis. Duis sodales mauris et neque aliquam, at fermentum tellus gravida.
+
+Pellentesque at laoreet dolor. Cras porta lacinia vehicula. Nullam volutpat et leo non facilisis. Aenean sed consequat lacus. Ut eu elit metus. Suspendisse porttitor gravida finibus. Quisque molestie justo ligula, convallis mollis augue semper sit amet. Pellentesque ullamcorper placerat facilisis. Mauris consectetur orci nibh, ut pellentesque massa tristique sed. Fusce tincidunt tellus sit amet dolor accumsan, dapibus faucibus justo luctus. Pellentesque vehicula, nisl non sollicitudin euismod, turpis massa lacinia metus, ac venenatis dolor enim vel lacus.</string>
+
 </resources>

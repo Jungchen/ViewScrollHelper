@@ -9,6 +9,7 @@
       android:label="@string/appName"
       android:theme="@style/AppTheme"
       >
+
     <activity
         android:name=".MainActivity"
         android:label="@string/appName"
@@ -27,6 +28,10 @@
     <activity
         android:name=".RecyclerTabsActivity"
         android:label="@string/title_recyclerViewTabs"
+        />
+    <activity
+        android:name=".ScrollViewActivity"
+        android:label="@string/title_scrollView"
         />
   </application>
 

@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = "MainActivity";
 
@@ -20,6 +19,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         findViewById(R.id.buttonRecycler).setOnClickListener(this);
         findViewById(R.id.buttonRecyclerTabs).setOnClickListener(this);
+        findViewById(R.id.buttonScrollView).setOnClickListener(this);
     }
 
     @Override
@@ -31,6 +31,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.buttonRecyclerTabs:
                 startActivity(new Intent(this, RecyclerTabsActivity.class));
+                break;
+
+            case R.id.buttonScrollView:
+                startActivity(new Intent(this, ScrollViewActivity.class));
                 break;
 
         }

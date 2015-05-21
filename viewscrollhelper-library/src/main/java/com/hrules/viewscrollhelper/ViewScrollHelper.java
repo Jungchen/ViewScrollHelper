@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.ScrollView;
 
 public class ViewScrollHelper {
     private static final String TAG = "ViewScrollHelper";
@@ -23,7 +24,8 @@ public class ViewScrollHelper {
     private boolean viewVisible;
     private int viewScrolledDistance;
 
-    private final RecyclerView recyclerView;
+    private RecyclerView recyclerView;
+    private ObservableScrollView observableScrollView;
 
     private boolean activated;
 
@@ -45,10 +47,26 @@ public class ViewScrollHelper {
         setListener(onViewScrollVisibilityChanged);
     }
 
+    public ViewScrollHelper(ObservableScrollView observableScrollView, View view) {
+        init(view);
+
+        this.observableScrollView = observableScrollView;
+        this.observableScrollView.setPadding(observableScrollView.getPaddingLeft(), observableScrollView.getPaddingTop() + viewHeight, observableScrollView.getPaddingRight(), observableScrollView.getPaddingBottom());
+        this.observableScrollView.setOnObservableScrollViewChangedListener(observableScrollViewListener);
+    }
+
+    public ViewScrollHelper(ObservableScrollView observableScrollView, View view, OnViewScrollVisibilityChanged onViewScrollVisibilityChanged) {
+        this(observableScrollView, view);
+        setListener(onViewScrollVisibilityChanged);
+    }
+
     private void init(View view) {
         if (view == null) {
             throw new IllegalArgumentException("View must not be null");
         }
+
+        this.recyclerView = null;
+        this.observableScrollView = null;
 
         activated = true;
 
@@ -83,6 +101,22 @@ public class ViewScrollHelper {
         @Override
         public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
             super.onScrolled(recyclerView, dx, dy);
+            if (activated) {
+                checkOnScrolled(dy);
+            }
+        }
+    };
+
+    private final OnObservableScrollViewChanged observableScrollViewListener = new OnObservableScrollViewChanged() {
+        @Override
+        public void onScrollStateChanged(ScrollView scrollView, int newScrollState) {
+            if (activated && newScrollState == ObservableScrollView.SCROLL_STATE_IDLE) {
+                checkScrollStateChanged();
+            }
+        }
+
+        @Override
+        public void onScrolled(ScrollView scrollView, int dx, int dy) {
             if (activated) {
                 checkOnScrolled(dy);
             }
@@ -153,15 +187,43 @@ public class ViewScrollHelper {
         viewVisible = false;
     }
 
+    private void notifyOnHide() {
+        if (listener != null) {
+            listener.onHide();
+        }
+    }
+
+    private void notifyOnShow() {
+        if (listener != null) {
+            listener.onShow();
+        }
+    }
+
+    private void notifyOnMove(int distance) {
+        if (listener != null) {
+            listener.onMove(distance);
+        }
+    }
+
     public void show() {
         if (activated && !viewVisible) {
-            recyclerView.smoothScrollBy(0, -viewHeight);
+            if (recyclerView != null) {
+                recyclerView.smoothScrollBy(0, -viewHeight);
+            }
+            if (observableScrollView != null) {
+                observableScrollView.smoothScrollBy(0, -viewHeight);
+            }
         }
     }
 
     public void hide() {
         if (activated && viewVisible) {
-            recyclerView.smoothScrollBy(0, viewHeight);
+            if (recyclerView != null) {
+                recyclerView.smoothScrollBy(0, viewHeight);
+            }
+            if (observableScrollView != null) {
+                observableScrollView.smoothScrollBy(0, viewHeight);
+            }
         }
     }
 
@@ -195,25 +257,6 @@ public class ViewScrollHelper {
             throw new IllegalArgumentException("View height must be less than parent View height");
         }
         viewHeight = viewHeightOld - customViewHeight;
-    }
-
-
-    private void notifyOnHide() {
-        if (listener != null) {
-            listener.onHide();
-        }
-    }
-
-    private void notifyOnShow() {
-        if (listener != null) {
-            listener.onShow();
-        }
-    }
-
-    private void notifyOnMove(int distance) {
-        if (listener != null) {
-            listener.onMove(distance);
-        }
     }
 
     public void setHideThreshold(float hideThreshold) {
@@ -258,5 +301,9 @@ public class ViewScrollHelper {
 
     public RecyclerView getRecyclerView() {
         return recyclerView;
+    }
+
+    public ObservableScrollView getObservableScrollView() {
+        return observableScrollView;
     }
 }

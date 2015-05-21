@@ -1,17 +1,19 @@
 ViewScrollHelper
 =====
-Show/hide views (e.g. a toolbar) when the user scrolls up/down a RecyclerView.
+Show/hide views (e.g. a toolbar) when the user scrolls up/down a RecyclerView/ObservableScrollView.
 
 ##Importing to your project
 Add this dependency to your build.gradle file:
 ```java
 dependencies {
-    compile 'com.hrules:viewscrollhelper:1.0.1'
+    compile 'com.hrules:viewscrollhelper:1.1.0'
 }
 ```
 ##Usage
 ```java
 new ViewScrollHelper(recyclerView, toolbar);
+
+new ViewScrollHelper(observableScrollView, toolbar);
 ```
 More detailed usage example can be found in example application.
 

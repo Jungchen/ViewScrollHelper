@@ -1,0 +1,25 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+  <com.hrules.viewscrollhelper.ObservableScrollView
+      android:id="@+id/observableScrollView"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:clipToPadding="false"
+      android:scrollbarStyle="outsideOverlay"
+      android:scrollbars="vertical" >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/loremIpsum"
+        android:padding="@dimen/default_padding"
+        />
+  </com.hrules.viewscrollhelper.ObservableScrollView>
+
+  <include layout="@layout/layout_toolbar"/>
+
+</RelativeLayout>

@@ -31,5 +31,14 @@
         android:layout_gravity="center_horizontal"
         android:layout_margin="@dimen/default_margin"
         />
+
+    <Button
+        android:id="@+id/buttonScrollView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/scrollView"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="@dimen/default_margin"
+        />
   </LinearLayout>
 </RelativeLayout>
