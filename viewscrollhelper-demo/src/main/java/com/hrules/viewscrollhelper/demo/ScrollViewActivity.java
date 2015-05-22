@@ -20,7 +20,7 @@ public class ScrollViewActivity extends AppCompatActivity implements OnViewScrol
         setSupportActionBar(toolbar);
 
         ObservableScrollView observableScrollView = (ObservableScrollView) findViewById(R.id.observableScrollView);
-        new ViewScrollHelper(observableScrollView, toolbar, this);
+        new ViewScrollHelper(observableScrollView, findViewById(R.id.layout_toolbar), this);
     }
 
     @Override

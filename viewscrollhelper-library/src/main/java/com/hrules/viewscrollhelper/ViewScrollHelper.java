@@ -51,6 +51,7 @@ public class ViewScrollHelper {
         init(view);
 
         this.observableScrollView = observableScrollView;
+        this.observableScrollView.setOverScrollMode(View.OVER_SCROLL_NEVER);
         this.observableScrollView.setPadding(observableScrollView.getPaddingLeft(), observableScrollView.getPaddingTop() + viewHeight, observableScrollView.getPaddingRight(), observableScrollView.getPaddingBottom());
         this.observableScrollView.setOnObservableScrollViewChangedListener(observableScrollViewListener);
     }
@@ -120,6 +121,10 @@ public class ViewScrollHelper {
             if (activated) {
                 checkOnScrolled(dy);
             }
+        }
+
+        @Override
+        public void onScrollPositionChanged(float posx, float posy) {
         }
     };
 

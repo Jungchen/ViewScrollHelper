@@ -9,7 +9,11 @@ public class ObservableScrollView extends ScrollView {
     public static final int SCROLL_STATE_ACTIVE = 1;
 
     private static final int SCROLL_STATE_CHECK_INTERVAL = 50;
-    private long lastScrollUpdate = -1;
+
+    private long lastScrollUpdate;
+
+    private int internalOldX;
+    private int internalOldY;
 
     private OnObservableScrollViewChanged onObservableScrollViewChanged;
 
@@ -23,13 +27,22 @@ public class ObservableScrollView extends ScrollView {
 
     public ObservableScrollView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+        init();
+    }
+
+    private void init() {
+        lastScrollUpdate = -1;
+
+        internalOldX = getScrollX();
+        internalOldY = getScrollY();
     }
 
     @Override
     protected void onScrollChanged(int x, int y, int oldX, int oldY) {
         super.onScrollChanged(x, y, oldX, oldY);
         if (onObservableScrollViewChanged != null) {
-            onObservableScrollViewChanged.onScrolled(this, -(oldX - x), -(oldY - y));
+            onObservableScrollViewChanged.onScrollPositionChanged(getScrollX(), getScrollY());
+            onObservableScrollViewChanged.onScrolled(this, -(internalOldX - getScrollX()), -(internalOldY - getScrollY()));
         }
 
         if (lastScrollUpdate == -1) {
@@ -37,6 +50,8 @@ public class ObservableScrollView extends ScrollView {
         }
         lastScrollUpdate = System.currentTimeMillis();
 
+        internalOldX = getScrollX();
+        internalOldY = getScrollY();
     }
 
     public void setOnObservableScrollViewChangedListener(OnObservableScrollViewChanged listener) {
@@ -60,5 +75,4 @@ public class ObservableScrollView extends ScrollView {
             }
         }
     }
-
 }

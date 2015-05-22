@@ -8,4 +8,6 @@ public interface OnObservableScrollViewChanged {
 
     void onScrolled(ScrollView scrollView, int dx, int dy);
 
+    void onScrollPositionChanged(float posx, float posy);
+
 }
