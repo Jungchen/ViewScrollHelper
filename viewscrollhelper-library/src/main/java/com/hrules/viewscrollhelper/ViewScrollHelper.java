@@ -27,12 +27,12 @@ public class ViewScrollHelper {
     private RecyclerView recyclerView;
     private ObservableScrollView observableScrollView;
 
-    private boolean activated;
+    private boolean enabled;
 
     private TimeInterpolator showInterpolator;
     private TimeInterpolator hideInterpolator;
 
-    private OnViewScrollVisibilityChanged listener;
+    private ViewScrollHelperListener listener;
 
     public ViewScrollHelper(RecyclerView recyclerView, View view) {
         init(view);
@@ -42,9 +42,9 @@ public class ViewScrollHelper {
         this.recyclerView.setOnScrollListener(recyclerViewScrollListener);
     }
 
-    public ViewScrollHelper(RecyclerView recyclerView, View view, OnViewScrollVisibilityChanged onViewScrollVisibilityChanged) {
+    public ViewScrollHelper(RecyclerView recyclerView, View view, ViewScrollHelperListener viewScrollHelperListener) {
         this(recyclerView, view);
-        setListener(onViewScrollVisibilityChanged);
+        setListener(viewScrollHelperListener);
     }
 
     public ViewScrollHelper(ObservableScrollView observableScrollView, View view) {
@@ -53,12 +53,12 @@ public class ViewScrollHelper {
         this.observableScrollView = observableScrollView;
         this.observableScrollView.setOverScrollMode(View.OVER_SCROLL_NEVER);
         this.observableScrollView.setPadding(observableScrollView.getPaddingLeft(), observableScrollView.getPaddingTop() + viewHeight, observableScrollView.getPaddingRight(), observableScrollView.getPaddingBottom());
-        this.observableScrollView.setOnObservableScrollViewChangedListener(observableScrollViewListener);
+        this.observableScrollView.setObservableScrollViewListener(observableScrollViewListener);
     }
 
-    public ViewScrollHelper(ObservableScrollView observableScrollView, View view, OnViewScrollVisibilityChanged onViewScrollVisibilityChanged) {
+    public ViewScrollHelper(ObservableScrollView observableScrollView, View view, ViewScrollHelperListener viewScrollHelperListener) {
         this(observableScrollView, view);
-        setListener(onViewScrollVisibilityChanged);
+        setListener(viewScrollHelperListener);
     }
 
     private void init(View view) {
@@ -69,7 +69,7 @@ public class ViewScrollHelper {
         this.recyclerView = null;
         this.observableScrollView = null;
 
-        activated = true;
+        enabled = true;
 
         this.view = view;
         view.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
@@ -86,7 +86,7 @@ public class ViewScrollHelper {
         hideInterpolator = new AccelerateInterpolator(2);
     }
 
-    private void setListener(OnViewScrollVisibilityChanged listener) {
+    private void setListener(ViewScrollHelperListener listener) {
         this.listener = listener;
     }
 
@@ -94,7 +94,7 @@ public class ViewScrollHelper {
         @Override
         public void onScrollStateChanged(RecyclerView recyclerView, int newScrollState) {
             super.onScrollStateChanged(recyclerView, newScrollState);
-            if (activated && newScrollState == RecyclerView.SCROLL_STATE_IDLE) {
+            if (enabled && newScrollState == RecyclerView.SCROLL_STATE_IDLE) {
                 checkScrollStateChanged();
             }
         }
@@ -102,29 +102,37 @@ public class ViewScrollHelper {
         @Override
         public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
             super.onScrolled(recyclerView, dx, dy);
-            if (activated) {
+            if (enabled) {
                 checkOnScrolled(dy);
             }
         }
     };
 
-    private final OnObservableScrollViewChanged observableScrollViewListener = new OnObservableScrollViewChanged() {
+    private final ObservableScrollViewListener observableScrollViewListener = new ObservableScrollViewListener() {
         @Override
         public void onScrollStateChanged(ScrollView scrollView, int newScrollState) {
-            if (activated && newScrollState == ObservableScrollView.SCROLL_STATE_IDLE) {
+            if (enabled && newScrollState == ObservableScrollView.SCROLL_STATE_IDLE) {
                 checkScrollStateChanged();
             }
         }
 
         @Override
         public void onScrolled(ScrollView scrollView, int dx, int dy) {
-            if (activated) {
+            if (enabled) {
                 checkOnScrolled(dy);
             }
         }
 
         @Override
         public void onScrollPositionChanged(float posx, float posy) {
+        }
+
+        @Override
+        public void onScrollDown() {
+        }
+
+        @Override
+        public void onScrollUp() {
         }
     };
 
@@ -211,7 +219,7 @@ public class ViewScrollHelper {
     }
 
     public void show() {
-        if (activated && !viewVisible) {
+        if (enabled && !viewVisible) {
             if (recyclerView != null) {
                 recyclerView.smoothScrollBy(0, -viewHeight);
             }
@@ -222,7 +230,7 @@ public class ViewScrollHelper {
     }
 
     public void hide() {
-        if (activated && viewVisible) {
+        if (enabled && viewVisible) {
             if (recyclerView != null) {
                 recyclerView.smoothScrollBy(0, viewHeight);
             }
@@ -272,12 +280,12 @@ public class ViewScrollHelper {
         this.showThreshold = showThreshold;
     }
 
-    public void setActivated(boolean activated) {
-        this.activated = activated;
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
-    public boolean isActivated() {
-        return activated;
+    public boolean isEnabled() {
+        return enabled;
     }
 
     public float getHideThreshold() {

@@ -15,7 +15,7 @@ public class ObservableScrollView extends ScrollView {
     private int internalOldX;
     private int internalOldY;
 
-    private OnObservableScrollViewChanged onObservableScrollViewChanged;
+    private ObservableScrollViewListener observableScrollViewListener;
 
     public ObservableScrollView(Context context) {
         this(context, null);
@@ -40,9 +40,15 @@ public class ObservableScrollView extends ScrollView {
     @Override
     protected void onScrollChanged(int x, int y, int oldX, int oldY) {
         super.onScrollChanged(x, y, oldX, oldY);
-        if (onObservableScrollViewChanged != null) {
-            onObservableScrollViewChanged.onScrollPositionChanged(getScrollX(), getScrollY());
-            onObservableScrollViewChanged.onScrolled(this, -(internalOldX - getScrollX()), -(internalOldY - getScrollY()));
+        if (observableScrollViewListener != null) {
+            observableScrollViewListener.onScrollPositionChanged(getScrollX(), getScrollY());
+            observableScrollViewListener.onScrolled(this, -(internalOldX - getScrollX()), -(internalOldY - getScrollY()));
+
+            if (getScrollY() < internalOldY) {
+                observableScrollViewListener.onScrollUp();
+            } else {
+                observableScrollViewListener.onScrollDown();
+            }
         }
 
         if (lastScrollUpdate == -1) {
@@ -54,8 +60,8 @@ public class ObservableScrollView extends ScrollView {
         internalOldY = getScrollY();
     }
 
-    public void setOnObservableScrollViewChangedListener(OnObservableScrollViewChanged listener) {
-        onObservableScrollViewChanged = listener;
+    public void setObservableScrollViewListener(ObservableScrollViewListener listener) {
+        observableScrollViewListener = listener;
     }
 
     private class ScrollStateHandler implements Runnable {
@@ -64,13 +70,13 @@ public class ObservableScrollView extends ScrollView {
             long currentTime = System.currentTimeMillis();
             if ((currentTime - lastScrollUpdate) > SCROLL_STATE_CHECK_INTERVAL) {
                 lastScrollUpdate = -1;
-                if (onObservableScrollViewChanged != null) {
-                    onObservableScrollViewChanged.onScrollStateChanged(ObservableScrollView.this, SCROLL_STATE_IDLE);
+                if (observableScrollViewListener != null) {
+                    observableScrollViewListener.onScrollStateChanged(ObservableScrollView.this, SCROLL_STATE_IDLE);
                 }
             } else {
                 postDelayed(this, SCROLL_STATE_CHECK_INTERVAL);
-                if (onObservableScrollViewChanged != null) {
-                    onObservableScrollViewChanged.onScrollStateChanged(ObservableScrollView.this, SCROLL_STATE_ACTIVE);
+                if (observableScrollViewListener != null) {
+                    observableScrollViewListener.onScrollStateChanged(ObservableScrollView.this, SCROLL_STATE_ACTIVE);
                 }
             }
         }

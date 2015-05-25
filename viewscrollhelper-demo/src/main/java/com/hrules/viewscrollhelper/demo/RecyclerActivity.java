@@ -10,12 +10,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import com.hrules.viewscrollhelper.OnViewScrollVisibilityChanged;
+import com.hrules.viewscrollhelper.ViewScrollHelperListener;
 import com.hrules.viewscrollhelper.ViewScrollHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecyclerActivity extends AppCompatActivity implements OnViewScrollVisibilityChanged {
+public class RecyclerActivity extends AppCompatActivity implements ViewScrollHelperListener {
     private static final String TAG = "RecyclerActivity";
 
     @Override

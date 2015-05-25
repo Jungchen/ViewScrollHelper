@@ -8,8 +8,8 @@ android {
   defaultConfig {
     minSdkVersion 14
     targetSdkVersion 22
-    versionCode 120
-    versionName "1.2.0"
+    versionCode 200
+    versionName "2.0.0"
   }
 }
 
@@ -22,7 +22,7 @@ publish {
   userOrg = 'hrules6872'
   groupId = 'com.hrules'
   artifactId = 'viewscrollhelper'
-  version = '1.2.0'
+  version = '2.0.0'
   description = 'View Scroll Helper'
   website = 'https://github.com/hrules6872/ViewScrollHelper'
   repository = "https://github.com/hrules6872/ViewScrollHelper.git"

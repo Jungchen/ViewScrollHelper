@@ -5,10 +5,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import com.hrules.viewscrollhelper.ObservableScrollView;
-import com.hrules.viewscrollhelper.OnViewScrollVisibilityChanged;
+import com.hrules.viewscrollhelper.ViewScrollHelperListener;
 import com.hrules.viewscrollhelper.ViewScrollHelper;
 
-public class ScrollViewActivity extends AppCompatActivity implements OnViewScrollVisibilityChanged {
+public class ScrollViewActivity extends AppCompatActivity implements ViewScrollHelperListener {
     private static final String TAG = "RecyclerActivity";
 
     @Override

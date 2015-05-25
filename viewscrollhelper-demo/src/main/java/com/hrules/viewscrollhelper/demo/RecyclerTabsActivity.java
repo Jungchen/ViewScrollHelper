@@ -12,12 +12,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.hrules.viewscrollhelper.OnViewScrollVisibilityChanged;
+import com.hrules.viewscrollhelper.ViewScrollHelperListener;
 import com.hrules.viewscrollhelper.ViewScrollHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecyclerTabsActivity extends AppCompatActivity implements OnViewScrollVisibilityChanged {
+public class RecyclerTabsActivity extends AppCompatActivity implements ViewScrollHelperListener {
     private static final String TAG = "RecyclerTabsActivity";
 
     @Override

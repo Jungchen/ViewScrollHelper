@@ -1,6 +1,6 @@
 package com.hrules.viewscrollhelper;
 
-public interface OnViewScrollVisibilityChanged {
+public interface ViewScrollHelperListener {
 
     void onShow();
 
