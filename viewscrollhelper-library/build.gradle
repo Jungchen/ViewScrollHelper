@@ -2,27 +2,27 @@ apply plugin: 'com.android.library'
 apply plugin: 'bintray-release'
 
 android {
-  compileSdkVersion 22
-  buildToolsVersion "22.0.1"
+  compileSdkVersion 23
+  buildToolsVersion "23.0.2"
 
   defaultConfig {
     minSdkVersion 14
-    targetSdkVersion 22
-    versionCode 200
-    versionName "2.0.0"
+    targetSdkVersion 23
+    versionCode 201
+    versionName "2.0.1"
   }
 }
 
 dependencies {
   compile fileTree(dir: 'libs', include: ['*.jar'])
-  compile "com.android.support:recyclerview-v7:22.0.0"
+  compile "com.android.support:recyclerview-v7:23.+"
 }
 
 publish {
   userOrg = 'hrules6872'
   groupId = 'com.hrules'
   artifactId = 'viewscrollhelper'
-  version = '2.0.0'
+  version = '2.0.1'
   description = 'View Scroll Helper'
   website = 'https://github.com/hrules6872/ViewScrollHelper'
   repository = "https://github.com/hrules6872/ViewScrollHelper.git"
