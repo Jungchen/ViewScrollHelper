@@ -2,9 +2,9 @@ package com.hrules.viewscrollhelper;
 
 public interface ViewScrollHelperListener {
 
-    void onShow();
+  void onShow();
 
-    void onHide();
+  void onHide();
 
-    void onMove(int distance);
+  void onMove(int distance);
 }
